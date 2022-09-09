@@ -12,19 +12,22 @@ const Actors = db.Actor;
 
 
 const moviesAPIController = {
-    'list': (req, res) => {
+    list: (req, res) => {
         db.Movie.findAll({
             include: ['genre']
         })
         .then(movies => {
             let respuesta = {
                 meta: {
+                    
                     status : 200,
                     total: movies.length,
                     url: 'api/movies'
                 },
+               
                 data: movies
             }
+                
                 res.json(respuesta);
             })
     },
@@ -43,6 +46,7 @@ const moviesAPIController = {
                     },
                     data: movie
                 }
+                
                 res.json(respuesta);
             });
     },
